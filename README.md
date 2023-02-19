@@ -9,4 +9,4 @@ In the future, it might be nice to create a RNN that guesses the next possible l
 This is terminal text interface game. Tkinter graphics are pending.
 
 # Bugs
-There are many. Beware. Feedback is appreciated.
+There are many. For instance, if the program can't find any words that have follow the letter criteria, it cannot calculate the letter probabilities and make an informed guess. Instead, it tries to divide by zero, resulting in a crash. Feedback is always appreciated.

@@ -14,14 +14,28 @@ import collections
 import os
 import random as r
 import sys
+import requests
 
-# Open words text file
+os.system("clear")
+
+# If for some reason the data download is not working, it is best to import the text file
+
+## Open words text file
+#try:
+#    # Contains around 58,000 words
+#    with open("data/common_words.txt", "r", encoding="utf-8") as f:
+#        words = [word.replace('\n', '') for word in f.readlines()]
+#except Exception as exc:
+#    raise IOError("Exception occured when reading file") from exc
+
+# If you are importing the words list from text file, comment out the following try-except block
+
 try:
-    # Contains around 58,000 words
-    with open("data/common_words.txt", "r", encoding="utf-8") as f:
-        words = [word.replace('\n', '') for word in f.readlines()]
+    data = requests.get("http://www.mieliestronk.com/corncob_lowercase.txt", timeout=10)
+    words = data.text.split('\r\n')
 except Exception as exc:
-    raise IOError("Exception occured when reading file") from exc
+    print("Could not get words list. Import words from text file")
+    sys.exit(1)
 
 def letter_probability(letter: str,
                        required_letters_in_word: list,
